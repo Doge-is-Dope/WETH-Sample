@@ -83,6 +83,7 @@ contract WETH is IERC20, IERC20Metadata, IWETH9 {
         balanceOf[msg.sender] += msg.value;
         totalSupply += msg.value;
         emit Transfer(address(0x0), msg.sender, msg.value);
+        emit Deposit(msg.sender, msg.value);
     }
 
     // Withdraw => Transfer [_amount] of ethers to [msg.sender] and burn [_amount] of tokens
@@ -93,6 +94,7 @@ contract WETH is IERC20, IERC20Metadata, IWETH9 {
         balanceOf[msg.sender] -= _amount;
         totalSupply -= _amount;
         emit Transfer(msg.sender, address(0x0), _amount);
+        emit Withdrawal(msg.sender, _amount);
     }
 
     // receive() => Same as deposit()
@@ -100,5 +102,6 @@ contract WETH is IERC20, IERC20Metadata, IWETH9 {
         balanceOf[msg.sender] += msg.value;
         totalSupply += msg.value;
         emit Transfer(address(0x0), msg.sender, msg.value);
+        emit Deposit(msg.sender, msg.value);
     }
 }
